@@ -107,10 +107,10 @@ class UserForm(FlaskForm):
 
 
 class UserAddressForm(FlaskForm):
-    province = StringField(lazy_gettext("Province"))
-    city = StringField(lazy_gettext("Sity"))
-    district = StringField(lazy_gettext("District"))
     address = StringField(lazy_gettext("Address"))
+    city = StringField(lazy_gettext("City"))
+    state = StringField(lazy_gettext("State"))
+    zip_code = StringField(lazy_gettext("Zip Code"))
     contact_name = StringField(lazy_gettext("Contact Name"))
     contact_phone = StringField(lazy_gettext("Contact Phone"))
     submit = SubmitField(lazy_gettext("Submit"))
@@ -167,6 +167,7 @@ class ProductTypeForm(FlaskForm):
 
 class ProductForm(FlaskForm):
     title = StringField(lazy_gettext("Title"))
+    stripe_price_id = StringField(lazy_gettext("Stripe Price ID"))
     basic_price = DecimalField(lazy_gettext("Basic Price"))
     on_sale = BooleanField(lazy_gettext("On Sale"), default=True)
     is_featured = BooleanField(lazy_gettext("Is Featured"), default=False)

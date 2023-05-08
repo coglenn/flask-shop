@@ -45,13 +45,13 @@ SiteDefaultSettings = {
         "description": "The title of the project.",
     },
     "project_subtitle": {
-        "value": "A lightweight e-commerce software in Flask",
+        "value": "Gleberts",
         "value_type": SettingValueType.string,
         "name": "Project subtitle",
-        "description": "A short description of the project.",
+        "description": "Fish Shop",
     },
     "project_copyright": {
-        "value": "COPYRIGHT © 2009–2019 MIRUMEE SOFTWARE",
+        "value": "COPYRIGHT © 2010–2019 Gleberts LLC",
         "value_type": SettingValueType.string,
         "name": "Project Copyright",
         "description": "Copyright notice of the Project like '&copy; 2019 FlaskShop'. ",

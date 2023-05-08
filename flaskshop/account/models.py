@@ -84,9 +84,9 @@ class User(Model, UserMixin):
 class UserAddress(Model):
     __tablename__ = "account_address"
     user_id = Column(db.Integer())
-    province = Column(db.String(255))
+    state = Column(db.String(255))
     city = Column(db.String(255))
-    district = Column(db.String(255))
+    zip_code = Column(db.String(255))
     address = Column(db.String(255))
     contact_name = Column(db.String(255))
     contact_phone = Column(db.String(80))

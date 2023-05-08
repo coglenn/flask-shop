@@ -1,5 +1,11 @@
 {% import '_macros.html' as macros %}
 
+<head>
+    <title>Buy cool new product</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+
 <div class="table__header order-details__table-header d-none d-sm-block">
     <div class="row">
         <div class="col-md-8">
@@ -122,12 +128,16 @@
         {% if order.status_human == "unfulfilled" %}
         <div class="col-6">
             <span class="float-right">{% trans %}Please pay before 00:30, else the order will auto closed{% endtrans %}</span>
-            <a href="{{ url_for('order.ali_pay', token=order.token) }}" class="btn btn-primary float-right">
-                {% trans %}Alipay{% endtrans %}
+
+            <a href="{{ url_for('order.test_pay_flow', token=order.token) }}" class="btn btn-primary float-right">
+                {% trans %}Pay{% endtrans %}
             </a>
-            <a href="{{ url_for('order.test_pay', token=order.token) }}" class="btn secondary float-right">
+            <!-- <form action="/create-checkout-session" method="POST">
+              <button type="submit" id="checkout-button">Checkout</button>
+            </form> -->
+            <!-- <a href="{{ url_for('order.test_pay_flow', token=order.token) }}" class="btn secondary float-right">
                 {% trans %}Pay for test{% endtrans %}
-            </a>
+            </a> -->
             <a href="{{ url_for('order.cancel_order', token=order.token) }}" class="btn danger float-right">
                 {% trans %}Cancel Order{% endtrans %}
             </a>

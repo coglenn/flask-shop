@@ -18,6 +18,7 @@
                                 {{ form.hidden_tag() }}
                                 <label>Type:</label> {{ product_type }}
                                 {{ render_field(form.title) }}
+                                {{ render_field(form.stripe_price_id) }}
                                 {{ render_field(form.basic_price) }}
                                 {{ render_field(form.on_sale) }}
                                 {{ render_field(form.is_featured) }}

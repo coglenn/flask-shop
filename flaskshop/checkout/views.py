@@ -58,7 +58,7 @@ def checkout_shipping():
                 user_id=current_user.id,
             )
         shipping_method = ShippingMethod.get_by_id(request.form["shipping_method"])
-        if user_address and shipping_method:
+        if user_address and shipping_method != None:
             cart = Cart.get_current_user_cart()
             cart.update(
                 shipping_address_id=user_address.id,

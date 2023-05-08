@@ -13,7 +13,7 @@ from flaskshop.constant import (
 )
 from flaskshop.database import Column, Model, db
 from flaskshop.discount.models import Voucher
-from flaskshop.product.models import ProductVariant
+from flaskshop.product.models import ProductVariant, Product
 
 # from sqlalchemy.dialects.mysql import TINYINT
 
@@ -44,6 +44,7 @@ class Order(Model):
         total_net = 0
         for line in cart.lines:
             variant = ProductVariant.get_by_id(line.variant.id)
+            product = Product.get_by_id(line.product.id)
             result, msg = variant.check_enough_stock(line.quantity)
             if result is False:
                 return result, msg
@@ -52,6 +53,7 @@ class Order(Model):
             orderline = OrderLine(
                 variant_id=variant.id,
                 quantity=line.quantity,
+                stripe_price_id=product.stripe_price_id,
                 product_name=variant.display_product(),
                 product_sku=variant.sku,
                 product_id=variant.sku.split("-")[0],
@@ -255,6 +257,7 @@ class OrderLine(Model):
     __tablename__ = "order_line"
     product_name = Column(db.String(255))
     product_sku = Column(db.String(100))
+    stripe_price_id = Column(db.String(255))
     quantity = Column(db.Integer())
     unit_price_net = Column(db.DECIMAL(10, 2))
     is_shipping_required = Column(db.Boolean(), default=True)
@@ -265,6 +268,10 @@ class OrderLine(Model):
     @property
     def variant(self):
         return ProductVariant.get_by_id(self.variant_id)
+
+    @property
+    def product(self):
+        return Product.get_by_id(self.product_id)
 
     def get_total(self):
         return self.unit_price_net * self.quantity
@@ -292,7 +299,8 @@ class OrderPayment(Model):
     paid_at = Column(db.DateTime())
 
     def pay_success(self, paid_at):
-        # 异步回调和同步主动查询都会去根据结果更改订单状态，所以先查询下是否已经更改过了
+        # Both asynchronous callback and synchronous active query will change the order status
+        # according to the result, so first check whether it has been changed
         if self.status == PaymentStatusKinds.confirmed.value:
             return
         self.paid_at = paid_at

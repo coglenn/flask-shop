@@ -22,6 +22,7 @@ MC_KEY_CATEGORY_CHILDREN = "product:category:{}:children"
 class Product(Model):
     __tablename__ = "product_product"
     title = Column(db.String(255), nullable=False)
+    stripe_price_id = Column(db.String(255), nullable=False)
     on_sale = Column(db.Boolean(), default=True)
     rating = Column(db.DECIMAL(8, 2), default=5.0)
     sold_count = Column(db.Integer(), default=0)

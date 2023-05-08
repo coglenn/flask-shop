@@ -7,7 +7,7 @@ from pathlib import Path
 class DBConfig:
     db_type = os.getenv("DB_TYPE", "mysql")
     user = os.getenv("DB_USER", "root")
-    passwd = os.getenv("DB_PASSWD", "123456")
+    passwd = os.getenv("DB_PASSWD", "Nelly3253")
     host = os.getenv("DB_HOST", "127.0.0.1")
     port = os.getenv("DB_PORT", 3306)
     db_name = os.getenv("DB_NAME", "flaskshop")
@@ -60,13 +60,13 @@ class Config:
     PURCHASE_URI = os.getenv("PURCHASE_URI", "")
 
     BCRYPT_LOG_ROUNDS = 13
-    DEBUG_TB_ENABLED = os.getenv("FLASK_DEBUG", False)  # Disable Debug toolbar
+    DEBUG_TB_ENABLED = os.getenv("FLASK_DEBUG", True)  # Disable Debug toolbar
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     DEBUG_TB_PROFILER_ENABLED = True
 
     MESSAGE_QUOTA = 10
 
-    LANGUAGES = {"en": "English", "bg": "Български"}
+    LANGUAGES = {"en": "English"}
     BABEL_DEFAULT_LOCALE = os.getenv("BABEL_DEFAULT_LOCALE", "en_US")
     BABEL_DEFAULT_TIMEZONE = os.getenv("BABEL_DEFAULT_TIMEZONE", "UTC")
     BABEL_TRANSLATION_DIRECTORIES = os.getenv(
@@ -85,5 +85,5 @@ class Config:
 
 class ProdConfig(Config):
     ENV = "prod"
-    FLASK_DEBUG = False
-    DEBUG_TB_ENABLED = False
+    FLASK_DEBUG = True
+    DEBUG_TB_ENABLED = True

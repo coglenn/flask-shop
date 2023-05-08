@@ -85,5 +85,5 @@ class Config:
 
 class ProdConfig(Config):
     ENV = "prod"
-    FLASK_DEBUG = True
-    DEBUG_TB_ENABLED = True
+    FLASK_DEBUG = False
+    DEBUG_TB_ENABLED = False

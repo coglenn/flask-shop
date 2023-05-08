@@ -27,8 +27,8 @@ jobs:
         python-version: "3.10"
     - uses: mirromutth/mysql-action@v1.1
       with:
-        mysql database: 'testshop'
-        mysql root password: 'root'
+        mysql database: 'flaskshop'
+        mysql root password: 'Nelly3253'
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip

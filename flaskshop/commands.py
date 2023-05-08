@@ -101,7 +101,7 @@ def urls(url, order):
 
     if url:
         try:
-            rule, arguments = current_app.url_map.bind("localhost").match(
+            rule, arguments = current_app.url_map.bind("https://flask-shopper1.herokuapp.com").match(
                 url, return_rule=True
             )
             rows.append((rule.rule, rule.endpoint, arguments))
